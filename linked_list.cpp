@@ -73,6 +73,24 @@ void del(int n){
         free(temp);
     }
 }
+
+void inse(int pos, int n){
+    node* temp = new node();
+    temp->data = n;
+    temp->next = NULL;
+
+    if(pos == 1){
+        temp->next = head;
+        head = temp;
+    }
+    else{
+        node* curr = head;
+        for(int i = 2; i<pos; i++)
+            curr = curr->next;
+        temp->next = curr->next;
+        curr->next = temp;
+    }
+}
 void rev(){
     node* curr = head;
     node* prev = NULL;
@@ -94,7 +112,9 @@ int main(){
         cin>>temp;
         add(temp);
     }
-
-    recursive(head);
+    int pos, val;
+    cin>>pos>>val;
+    inse(pos, val);
+    //recursive(head);
     show();
 }
